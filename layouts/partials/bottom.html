@@ -1,4 +1,3 @@
-
       <footer class="site-footer">
         <span itemscope itemtype="http://schema.org/Person">
           <link itemprop="url" href="{{ .Site.BaseURL }}">
@@ -13,12 +12,16 @@
 
           <br>
 
+          {{ if isset .Site.Author "about" -}}
+          <a itemprop="sameAs" href="{{- .Site.Author.about -}}" title="GitHub">about</a>
+          {{- end }}
+
           {{ if isset .Site.Params "githubusername" -}}
-          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">GH</a>
+          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">github</a>
           {{- end }}
 
           {{ if isset .Site.Params "twitterusername" -}}
-          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">TW</a>
+          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">twitter</a>
           {{- end}}
 
           {{ if isset .Site.Params "gpg" -}}
@@ -31,7 +34,18 @@
     </div>
 
   <script src="{{ "js/highlight.pack.js" | relURL }}"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
+  {{ if isset .Site.Params "gtm" -}}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.gtm.trackId }}"></script>
+  {{- end }}
+  <script type="application/javascript">
+  {{ if isset .Site.Params "gtm" -}}
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ .Site.Params.gtm.trackId }}');
+  {{- end }}
+  hljs.initHighlightingOnLoad();
+  </script>
   </body>
 </html>

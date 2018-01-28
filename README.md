@@ -17,6 +17,9 @@ Please refer to the [Hugo documentation](http://gohugo.io/themes/installing/).
 A few parameters should be adjusted in the site config:
 
 ```toml
+[author]
+  name = "Dongsheng Cai"
+  about = "https://dongsheng.org"
 [params]
   description = "Blog meta description."
   githubUsername = "your_gh_username"
@@ -26,6 +29,8 @@ A few parameters should be adjusted in the site config:
   jobTitle = "occupation"
   company = "the company"
   companyUrl = "https://the.company.url/"
+[params.gtm]
+  trackId = "UA-11111111-1"
 [params.gpg]
   key = "0x1111111111111111"
   fingerprint = "0000 0000 0000 0000 0000  0000 0000 0000 0000 0000"
